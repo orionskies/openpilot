@@ -14,8 +14,8 @@ Ecu = CarParams.Ecu
 
 class CarControllerParams:
   STEER_MAX = 800                # theoretical max_steer 2047
-  STEER_DELTA_UP = 10             # torque increase per refresh
-  STEER_DELTA_DOWN = 25           # torque decrease per refresh
+  STEER_DELTA_UP = 20             # torque increase per refresh
+  STEER_DELTA_DOWN = 45           # torque decrease per refresh
   STEER_DRIVER_ALLOWANCE = 15     # allowed driver torque before start limiting
   STEER_DRIVER_MULTIPLIER = 1     # weight driver torque
   STEER_DRIVER_FACTOR = 1         # from dbc
@@ -72,7 +72,8 @@ class CAR(Platforms):
   )
   MAZDA_CX5_2022 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-5 2022-25")],
-    MAZDA_CX5.specs,
+    # to allow for custom tuning of the swapped setup
+    MazdaCarSpecs(mass=3655 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=15.0)
   )
 
 
